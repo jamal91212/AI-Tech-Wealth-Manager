@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 
 # --- 1. CONFIG & API ---
 st.set_page_config(page_title="WealthBot", layout="wide")
-FINNHUB_KEY = "d6371kpr01qnpqg02ihgd6371kpr01qnpqg02ii0" 
+FINNHUB_KEY = st.secrets["FINNHUB_KEY"]
 finnhub_client = finnhub.Client(api_key=FINNHUB_KEY)
 
 # --- 2. DATA ENGINE ---
@@ -88,4 +88,5 @@ for stock in TECH_STOCKS:
 # Update Sidebar Totals at the end
 st.sidebar.divider()
 st.sidebar.metric("Total Portfolio Value", f"${total_val:,.2f}")
+
 st.sidebar.metric("Today's Profit/Loss", f"${total_pnl:,.2f}", delta=f"${total_pnl:,.2f}")
